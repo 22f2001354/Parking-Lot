@@ -1,0 +1,48 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+
+# Virtual environment
+venv/
+ENV/
+env/
+.venv/
+
+# Instance folder (contains SQLite DB and possibly config)
+instance/
+*.sqlite3
+
+# Flask-related
+*.log
+
+# IDEs and editors
+.vscode/
+.idea/
+
+# OS-specific files
+.DS_Store
+Thumbs.db
+
+# Pytest cache
+.pytest_cache/
+.cache/
+
+# Compiled HTML/Jinja cache
+*.jinja2c
+
+# Backup files
+*.bak
+*.swp
+*.tmp
+*~
+
+# Ignore compiled templates if using jinja precompilation
+__jinja2__/ 
+
+# Environment variable or secret files (if any)
+.env
+.env.*
+
+# Readme and app.py should be tracked, so they’re not excluded

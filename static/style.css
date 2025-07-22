@@ -1,0 +1,164 @@
+/* dashboard.css */
+
+/* Global Settings */
+body {
+    font-family: 'Comic Neue', cursive, sans-serif;
+    background-color: #f9fbfc;
+    margin: 0;
+    padding: 0;
+}
+
+/* Navbar */
+.navbar {
+    font-size: 1rem;
+}
+
+.navbar-brand {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+/* Badge */
+.badge {
+    font-size: 0.9rem;
+    padding: 0.5em 0.7em;
+    text-decoration: none;
+}
+
+/* Card Styling */
+.card {
+    border-radius: 1rem;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.05);
+}
+
+/* Dashboard Utilities */
+.mt-auto {
+    margin-top: auto !important;
+}
+
+.shadow-sm {
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1) !important;
+}
+
+/* Buttons */
+.btn-sm {
+    border-radius: 10px;
+    padding: 6px 12px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.btn-outline-primary:hover,
+.btn-outline-danger:hover,
+.btn-outline-dark:hover {
+    transform: translateY(-1px);
+}
+
+/* ===================
+   LOGIN PAGE STYLING
+   =================== */
+
+.box1 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.box2 {
+    background-color: #fff;
+    padding: 40px 30px;
+    border-radius: 20px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    max-width: 400px;
+    width: 100%;
+    animation: fadeIn 0.8s ease-in-out;
+}
+
+#usr-login {
+    text-align: center;
+    color: #0d6efd;
+    margin-bottom: 25px;
+    font-weight: bold;
+}
+
+.form-label {
+    color: #333;
+    font-weight: 500;
+}
+
+.form-control {
+    border-radius: 10px;
+    padding: 10px;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.form-control:focus {
+    border-color: #0d6efd;
+    box-shadow: 0 0 0 0.2rem rgba(13, 110, 253, 0.25);
+}
+
+.form-check-label {
+    cursor: pointer;
+}
+
+#my-btn {
+    width: 100%;
+    padding: 10px;
+    font-weight: 600;
+    border-radius: 10px;
+    background-color: #0d6efd;
+    border: none;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+#my-btn:hover {
+    background-color: #0b5ed7;
+    transform: translateY(-1px);
+}
+
+/* Create account */
+#ca {
+    text-align: center;
+    margin-top: 15px;
+}
+
+#ca a {
+    text-decoration: none;
+    color: #0d6efd;
+    transition: color 0.3s ease;
+}
+
+#ca a:hover {
+    color: #0b5ed7;
+}
+
+/* Login Message */
+.msg {
+    margin-top: 20px;
+    text-align: center;
+    font-weight: 500;
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Responsive Adjustments */
+@media (max-width: 576px) {
+    .box2 {
+        padding: 30px 20px;
+    }
+
+    .navbar-brand {
+        font-size: 1.3rem;
+    }
+}

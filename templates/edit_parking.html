@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YLot | Edit Lot</title>
+    <!-- local css -->
+    <link rel="stylesheet" href="/static/style.css">
+    <!-- bootstrap cdn -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-4Q6Gf2aSP4eDXB8Miphtr37CMZZQ5oXLH2yaXMJ2w8e2ZtHTl7GptT4jmndRuHDT" crossorigin="anonymous">
+    <!-- cdn for font -->
+    <link href="https://fonts.googleapis.com/css2?family=Comic+Neue&display=swap" rel="stylesheet">
+
+</head>
+
+<body>
+    <div class="box1">
+
+        <div class="box2">
+            <h2 id="usr-login">Edit Lot</h2>
+            <div class="form">
+                <form action="/edit_parking/{{ parking_lot.id }}" method="post">
+    <div class="mb-3">
+        <label for="nameInput" class="form-label">Prime Location Name</label>
+        <input type="text" class="form-control" value="{{ parking_lot.name }}"
+               id="nameInput" name="location" required>
+
+        <label for="addressInput" class="form-label">Address</label>
+        <input type="text" class="form-control" value="{{ parking_lot.address }}"
+               id="addressInput" name="address" required>
+
+        <label for="pincodeInput" class="form-label">Pincode</label>
+        <input type="text" class="form-control" value="{{ parking_lot.pincode }}"
+               id="pincodeInput" name="pincode" required>
+
+        <label for="priceInput" class="form-label">Price (per Hour)</label>
+        <input type="number" step="0.01" class="form-control" value="{{ parking_lot.price_per_hour }}"
+               id="priceInput" name="price" required>
+
+        <label for="spotsInput" class="form-label">Maximum Spots</label>
+        <input type="number" class="form-control" value="{{ parking_lot.max_spots }}"
+               id="spotsInput" name="maxispot" required>
+    </div>
+
+    <button id="my-btn" type="submit" class="btn btn-success">Edit</button>
+    <a href="/admin" class="btn btn-secondary">Cancel</a>
+</form>
+
+            </div>
+            <div class="msg">
+                <div style="color: red;">{{msge}}</div>
+                <div style="color: green;">{{msgs}}</div>
+            </div>
+        </div>
+    </div>
+</body>
+<!-- bootstrap js cdn -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-j1CDi7MgGQ12Z7Qab0qlWQ/Qqz24Gc6BM0thvEMVjHnfYGF0rmFCozFSxQBxwHKO"
+    crossorigin="anonymous"></script>
+<script>
+    window.onload = function () {
+        setTimeout(function () {
+            const successMsg = document.querySelector('.msg div[style*="green"]');
+            const errorMsg = document.querySelector('.msg div[style*="red"]');
+
+            if (successMsg) successMsg.style.display = 'none';
+            if (errorMsg) errorMsg.style.display = 'none';
+        }, 2000); // 2000 milliseconds = 2 seconds
+    };
+</script>
+
+
+</html>
