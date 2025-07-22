@@ -369,36 +369,38 @@ def park_out(parking_id, user_id):
     now=now.strftime('%Y-%m-%d %H:%M'),
     total_cost=round(cost, 2)
 )
+from collections import Counter
 
 @app.route("/user_summary/<int:user_id>")
 def user_summary(user_id):
     my_user = User.query.get_or_404(user_id)
-
-    used_lots = Reservation.query.filter_by(user_id=user_id).count()
-
-    unused_lots = ParkingSpot.query.filter_by(status="A").count()
-
-    labels = ['Used', 'Unused']
-    values = [used_lots, unused_lots]
-    colors = ['#93C5FD', '#A7F3D0']
-
-    fig, ax = plt.subplots(figsize=(4, 3))
-    bars = ax.bar(labels, values, color=colors, edgecolor='black', linewidth=1)
-    ax.set_title("Summary on already used parking spots", pad=15)
-    ax.set_ylim(0, max(values) + 2)
+    reservations = Reservation.query.filter_by(user_id=user_id).all()
+    lot_names = [res.spot.lot.name for res in reservations]
+    lot_counter = Counter(lot_names)
+    labels = list(lot_counter.keys())
+    values = list(lot_counter.values())
+    fig, ax = plt.subplots(figsize=(6, 3))
+    bars = ax.bar(labels, values, color="#93C5FD", edgecolor="black")
+    ax.set_title("Parking Frequency by Lot")
+    ax.set_ylabel("Times Parked")
     ax.bar_label(bars)
-    ax.set_facecolor('#FFFFFF')
-    fig.patch.set_facecolor('#FFFFFF')
     fig.tight_layout()
 
     buf = io.BytesIO()
-    plt.savefig(buf, format='png')
+    plt.savefig(buf, format="png")
     buf.seek(0)
-    image_base64 = base64.b64encode(buf.read()).decode('utf-8')
+    chart_data = base64.b64encode(buf.read()).decode("utf-8")
     buf.close()
     plt.close(fig)
+    total_bookings = sum(values)
+    unique_lots = len(labels)
 
-    return render_template("user_summary.html", chart_data=image_base64, my_user=my_user)
+    return render_template("user_summary.html",
+                           my_user=my_user,
+                           chart_data=chart_data,
+                           total_bookings=total_bookings,
+                           unique_lots=unique_lots,
+                           lot_list=labels)
 
 @app.route('/profile/<int:user_id>', methods=['GET', 'POST'])
 def profile(user_id):
