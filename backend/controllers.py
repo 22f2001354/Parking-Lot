@@ -64,7 +64,8 @@ def signup():
 
 @app.route("/logout")
 def logout():
-    return render_template("login.html", msgs="Logout successfully")
+    session.clear()
+    return redirect(url_for("login", msgs="Logout successfully"))
 
 #==============================================================
 # Admin Dashboard and Parking Management Routes
